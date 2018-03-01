@@ -11,6 +11,7 @@ import UIKit
 class CityTableViewCell: UITableViewCell {
 
     @IBOutlet weak var cityName: UILabel!
+    @IBOutlet weak var cityImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

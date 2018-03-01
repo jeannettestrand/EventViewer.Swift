@@ -9,7 +9,10 @@
 import UIKit
 
 class CityTableViewController: UITableViewController {
-
+    
+    var items = [City]()
+    let cellIdentifier = "CityTableViewCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCityData()
@@ -23,19 +26,71 @@ class CityTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return items.count
+    }
+    
+    // Configures and provides a cell to display for a given row
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Requests a cell from the table view
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? CityTableViewCell else {
+            fatalError("Selected cell is not of type \(cellIdentifier)")
+        }
+        
+        // Fetches the appropriate item for data source layout
+        let city = items[indexPath.row]
+        
+        cell.cityName.text = city.cityName
+        return cell
+    }
+    
+    // Creates data item to pass to View Controller for display
+    // If error encountered fatalError message sent
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == "ShowDetail" {
+            guard let listViewController = segue.destination as? EventTableViewController else {
+                fatalError("Unexpected destination \(segue.destination)")
+            }
+            guard let selectedTableViewCell = sender as? CityTableViewCell else {
+                fatalError("Unexpected destination \(String(describing: sender))")
+            }
+            guard let indexPath = tableView.indexPath(for: selectedTableViewCell) else {
+                fatalError("Unexpected index path for \(selectedTableViewCell)")
+            }
+            listViewController.city = items[indexPath.row]
+        }
+    }
+    
+    // Catches cancel function segue from View Controller
+    @IBAction func unwindToConversionList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? EventTableViewController, let item = sourceViewController.city {
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                // Edit
+                items[selectedIndexPath.row] = item
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            }
+        }
+    }
+    
+    func loadCityData(){
+        guard let victoria = City(cityName: "Victoria", cityImage: #imageLiteral(resourceName: "calgary"))
+            else { fatalError("Unable to instantiate City") }
+        guard let vancouver = City(cityName: "Vancouver", cityImage: #imageLiteral(resourceName: "vancouver"))
+            else { fatalError("Unable to instantiate City") }
+        guard let kelowna = City(cityName: "Kelowna", cityImage: #imageLiteral(resourceName: "kelowna"))
+            else { fatalError("Unable to instantiate City") }
+        guard let edmonton = City(cityName: "Edmonton", cityImage: #imageLiteral(resourceName: "edmonton"))
+            else { fatalError("Unable to instantiate City") }
+        guard let calgary = City(cityName: "Calgary", cityImage: #imageLiteral(resourceName: "victoria"))
+            else { fatalError("Unable to instantiate City") }
+        items += [victoria, vancouver, kelowna, edmonton, calgary]
     }
 
     /*
