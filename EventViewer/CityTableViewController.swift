@@ -47,6 +47,7 @@ class CityTableViewController: UITableViewController {
         let city = items[indexPath.row]
         
         cell.cityName.text = city.cityName
+        cell.cityImage.image = city.cityImage
         return cell
     }
     
