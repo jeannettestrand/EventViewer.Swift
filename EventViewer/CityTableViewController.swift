@@ -81,15 +81,15 @@ class CityTableViewController: UITableViewController {
     }
     
     func loadCityData(){
-        guard let victoria = City(cityName: "Victoria", cityImage: #imageLiteral(resourceName: "calgary"))
+        guard let victoria = City(cityName: "Victoria", cityImage: #imageLiteral(resourceName: "Image-2"))
             else { fatalError("Unable to instantiate City") }
-        guard let vancouver = City(cityName: "Vancouver", cityImage: #imageLiteral(resourceName: "vancouver"))
+        guard let vancouver = City(cityName: "Vancouver", cityImage: #imageLiteral(resourceName: "Image-3"))
             else { fatalError("Unable to instantiate City") }
-        guard let kelowna = City(cityName: "Kelowna", cityImage: #imageLiteral(resourceName: "kelowna"))
+        guard let kelowna = City(cityName: "Kelowna", cityImage: #imageLiteral(resourceName: "Image-1"))
             else { fatalError("Unable to instantiate City") }
-        guard let edmonton = City(cityName: "Edmonton", cityImage: #imageLiteral(resourceName: "edmonton"))
+        guard let edmonton = City(cityName: "Edmonton", cityImage: #imageLiteral(resourceName: "Image"))
             else { fatalError("Unable to instantiate City") }
-        guard let calgary = City(cityName: "Calgary", cityImage: #imageLiteral(resourceName: "victoria"))
+        guard let calgary = City(cityName: "Calgary", cityImage: #imageLiteral(resourceName: "Image-4"))
             else { fatalError("Unable to instantiate City") }
         items += [victoria, vancouver, kelowna, edmonton, calgary]
     }

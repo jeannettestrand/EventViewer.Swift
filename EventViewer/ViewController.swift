@@ -15,9 +15,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var eventDate: UILabel!
     @IBOutlet weak var eventInfo: UILabel!
+    @IBOutlet weak var eventLocation: UILabel!
     var item: Event?
-
     
+    
+    @IBAction func eventAdd(_ sender: UIButton) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Retrieves data passed from table view controller
@@ -29,6 +33,7 @@ class ViewController: UIViewController {
             eventDate.text = item.eventDate
             eventInfo.text = item.eventInfo
             eventImage.image = item.eventImage
+            eventLocation.text = item.locationLabel
         } else {
             fatalError("Unable to open view controller")
         }

@@ -63,6 +63,7 @@ class EventTableViewController: UITableViewController {
         cell.eventDate.text = event.eventDate
         cell.eventImage.image = event.eventImage
         cell.eventName.text = event.eventName
+        cell.eventLocation.text = event.locationLabel
         return cell
     }
     
