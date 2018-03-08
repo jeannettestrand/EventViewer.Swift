@@ -11,10 +11,14 @@ import os
 class City {
     var cityName: String
     var cityImage: UIImage
+    var long: Double
+    var lat: Double
     
     //MARK : Initialization of class parameters
-    init?(cityName: String, cityImage: UIImage) {
+    init?(cityName: String, cityImage: UIImage, long: Double, lat: Double) {
         self.cityName = cityName
         self.cityImage = cityImage
+        self.long = long
+        self.lat = lat
     }
 }

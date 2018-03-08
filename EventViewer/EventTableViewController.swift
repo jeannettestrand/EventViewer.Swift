@@ -20,7 +20,7 @@ class EventTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let city = city {
-            loadSampleData(cityName : city.cityName )
+            loadSampleData(cityDetails : city)
         } else {
             fatalError("Unable to open view controller")
         }
@@ -98,8 +98,8 @@ class EventTableViewController: UITableViewController {
     
     // MARK: Private Methods
     // Instantiate default Conversion data objects for application
-    private func loadSampleData(cityName : String) {
-        switch (cityName) {
+    private func loadSampleData(cityDetails: City) {
+        switch (cityDetails.cityName) {
             case "Victoria":
                     guard let one = Event(
                     eventName: "Propagating and Growing Native Plants Workshop",
