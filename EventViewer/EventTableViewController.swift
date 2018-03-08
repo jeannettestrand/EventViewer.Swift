@@ -250,6 +250,71 @@ class EventTableViewController: UITableViewController {
             
         default:
                 fatalError("Unable to instantiate Event")
+        
+        /* THIS SECTION UNDER CONSTRUCTION 
+             import UIKit
+            
+             // Construct request URL by decomposing host, path, token
+             let long = -123.33 // Provided by city data
+             let lat = 48.41 // Provided by city data
+             let baseURL = "https://www.eventbriteapi.com/v3/" // Base URL for eventbrite API
+             let eventByLocation = "events/&location.latitude=(\lat)&location.longitude=(\long)"
+             let token = "?token=MD3K2LBYNVY4JS5D3NW2"
+ 
+             print("making endpoint")
+             let eventBriteEndPoint: String = baseURL+eventByLocation+token
+             print("\(eventBriteEndPoint)")
+ 
+             guard let url = URL(string: eventBriteEndPoint) else {
+                fatalError("unable to create URL object")
+             }
+ 
+             print("url created \(url)")
+ 
+             let urlRequest = URLRequest(url: url)
+             print("urlRequest object made \(urlRequest)")
+ 
+             let session = URLSession.shared
+             print("session connected \(session)")
+ 
+             let task = session.dataTask(with: urlRequest) {
+                 (data, response, error) in
+ 
+                     print("in completionHandler")
+                     //Check for error
+                     guard error == nil else {
+                        print("error calling GET")
+                        print(error!)
+                        return
+                     }
+                     // make sure we got data
+                     guard let responseData = data else {
+                        print("Error: did not receive data")
+                     return
+                     }
+                     // parse the result as JSON, since that's what the API provides
+                     do {
+                        guard let results = try JSONSerialization.jsonObject(with: responseData, options: [])
+                            as? [String: Any] else {
+                            print("error trying to convert data to JSON")
+                            return
+                        }
+                         // Print results to prove it is accessible
+                         print("The result is: " + results.description)
+ 
+                         // Access object as a dictionary
+                         guard let item = results["title"] as? String else {
+                            print("Could not get todo title from JSON")
+                            return
+                         }
+                         print("The item is: " + item)
+                     } catch  {
+                     print("error trying to convert data to JSON")
+                     return
+                }
+             }
+             task.resume()
+             print(task) */
         }
     }
 }
